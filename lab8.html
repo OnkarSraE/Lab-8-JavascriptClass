@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Events</title>
+    <style>
+        #clickme {
+            padding: 5px;
+            margin: 5px;
+        }
+
+        #hover {
+            border: 2px solid purple;
+            padding: 10px;
+            margin: 10px;
+            text-align: center;
+        }
+
+        #keyboard-event {
+            padding: 5px;
+            margin: 10px;
+        }
+
+        #form-event {
+            padding: 5px;
+            margin: 10px;
+        }
+
+      
+    </style>
+</head>
+<body>
+    <button id="clickme">Click Me</button>
+    <div id="hover">Hover Over Me</div>
+    <input id="keyboard-event" type="text" placeholder="Type Something...">
+
+    <form id="form-event">
+        <label for="Name">Name: </label>
+        <input type="text" id="name" placeholder="Your name...">
+        <button type="submit">Submit</button>
+    </form>
+
+    <input type="text" id="focusInput" placeholder="Focus on me..." style="border:10px solid black; padding: 5px; margin: 10px;">
+
+    <ul id="unordered-list" style="cursor: pointer;">
+        <li>List Item 1</li>
+        <li>List Item 2</li>
+        <li>List Item 3</li>
+        <li>List Item 4</li>
+        <li>List Item 5</li>
+    </ul>
+
+
+    <script>
+        /*click event*/
+        const button = document.getElementById('clickme');
+        button.addEventListener('click', () => {
+            button.textContent = 'Clicked!';
+        });
+
+        /*mouse event*/
+        const hover = document.getElementById('hover');
+        hover.addEventListener('mouseenter', () => {
+            hover.style.backgroundColor = 'aqua';
+        });
+        hover.addEventListener('mouseleave', () => {
+            hover.style.backgroundColor = 'White';
+        });
+
+        /*keyboard event*/
+        const keyword = document.getElementById('keyboard-event');
+        keyword.addEventListener('keyup', (event) => {
+            console.log(`Key Pressed: ${event.key}`)
+        });
+
+        /*form event*/
+        const form = document.getElementById('form-event');
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            console.log(`Name Entered: ${name}`);
+            
+        });
+
+        /*focus and blur event*/ 
+        const onFocus = document.getElementById('focusInput');
+        onFocus.addEventListener('focus', () => {
+            onFocus.style.borderColor = 'yellow';
+        });
+        onFocus.addEventListener('blur', () => {
+            onFocus.style.borderColor = 'black';
+        });
+
+        /*event delegation*/
+        const list = document.getElementById('unordered-list');
+        list.addEventListener('click', (event) => {
+            if (event.target.tagName === 'LI') {
+                event.target.style.backgroundColor = 'lightblue';
+            }
+
+        });
+    </script>
+
+   
+</body>
+</html>
